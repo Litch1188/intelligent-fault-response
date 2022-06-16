@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
   <ListView
       android:id="@+id/List_Vessel"
       android:layout_width="fill_parent"
@@ -14,8 +13,8 @@
       android:layout_weight="1"
       android:listSelector="@android:color/transparent"
       android:transcriptMode="alwaysScroll"
-      android:background="#F6F6F6"
-      />
+      android:background="#EFF0F2"
+      android:divider="@null" />
   <LinearLayout
       android:layout_width="fill_parent"
       android:layout_height="79dp"
