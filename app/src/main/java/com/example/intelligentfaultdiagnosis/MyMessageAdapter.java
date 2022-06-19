@@ -21,6 +21,12 @@ public class MyMessageAdapter extends BaseAdapter {
         this.context = context;
     }
 
+    public void update(List<Message> messagedata, Context context)
+    {
+        this.messagedata = messagedata;
+        this.context = context;
+    }
+    //添加了更新adapter的方法，传入新的list更新
     @Override
     public int getCount() {
         return messagedata.size();
