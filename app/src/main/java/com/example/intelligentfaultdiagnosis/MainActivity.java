@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
         button1=(Button)findViewById(R.id.send_button );//初始化发送按钮布局
         button1.setOnClickListener((v)->{sendMessage(button1);});//设置点击监听器，sendMessage有个View形参以确定是哪个布局
         editText=(EditText)findViewById(R.id.SendText);//初始化输入框布局
+        editText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER))
+                {
+                    sendMessage(v);
+                    return true;
+                }
+                return false;
+            }
+        });
         Message message1=new Message();
         message1.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",2);
         messagedata.add(message1);
@@ -50,5 +62,7 @@ public class MainActivity extends AppCompatActivity {
         messagedata.add(userMsg);
         MyAdapt.update(messagedata,this);//更新Listview列表
         listview.setAdapter(MyAdapt);
+        editText=(EditText)findViewById(R.id.SendText);
+        editText.setText("");
     }
 }

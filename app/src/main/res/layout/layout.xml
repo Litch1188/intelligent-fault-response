@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/leftshape">
+    <TextView
+        android:id="@+id/daohang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textSize="20dp"
+        android:paddingBottom="20dp"/>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    ESP故障"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    雷达故障"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    泊车系统故障"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    家充无法启动充电"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    空调响声大"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+
+</LinearLayout>
