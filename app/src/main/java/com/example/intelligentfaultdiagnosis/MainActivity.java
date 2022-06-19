@@ -2,6 +2,7 @@ package com.example.intelligentfaultdiagnosis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,10 +19,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private MyMessageAdapter MyAdapt;
     ListView listview;
+    public static Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mActivity = this;
         listview=findViewById(R.id.List_Vessel);//初始化listview布局
         button1=(Button)findViewById(R.id.send_button );//初始化发送按钮布局
         button1.setOnClickListener((v)->{sendMessage(button1);});//设置点击监听器，sendMessage有个View形参以确定是哪个布局
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         Message message1=new Message();
         message1.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",2);
         messagedata.add(message1);
+        Message message2=new Message();
+        message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",3);
+        messagedata.add(message2);
         MyAdapt=new MyMessageAdapter(messagedata,this);//初始化渲染列表
         listview.setAdapter(MyAdapt);
     }

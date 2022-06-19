@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <LinearLayout
+        android:id="@+id/left_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="10dp"
+        android:background="@drawable/leftshape"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/left_message3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="left"
+            android:textColor="#ff0F1520"
+            android:textSize="20dp"
+            />
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/solution_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="这是一个按钮"
+            android:onClick="gotoSolutionActivity"
+            android:stateListAnimator="@null"
+            />
+    </LinearLayout>
+
+</LinearLayout>

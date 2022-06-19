@@ -1,10 +1,12 @@
 package com.example.intelligentfaultdiagnosis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -59,6 +61,20 @@ public class MyMessageAdapter extends BaseAdapter {
             view.setText(messagedata.get(position).getMessage());
             LinearLayout layout=convertView.findViewById(R.id.right_layout);
             layout.setVisibility(View.GONE);//隐藏一边的对话
+        }
+        else if(messagedata.get(position).getType()==3){
+            convertView = LayoutInflater.from(context).inflate(R.layout.solution_message, parent, false);
+            TextView view=convertView.findViewById(R.id.left_message3);
+            view.setText(messagedata.get(position).getMessage());
+            Button button1=convertView.findViewById(R.id.solution_button);
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View button1) {
+                    Intent intent=new Intent(MainActivity.mActivity,BrowseSolutionActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    MainActivity.mActivity.startActivity(intent);
+                }
+            });
         }
         else{
             TextView view=convertView.findViewById(R.id.right_message);
