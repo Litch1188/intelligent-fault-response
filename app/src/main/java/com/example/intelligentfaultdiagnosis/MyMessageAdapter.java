@@ -1,10 +1,12 @@
 package com.example.intelligentfaultdiagnosis;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -49,9 +51,44 @@ public class MyMessageAdapter extends BaseAdapter {
         }
         //接收信息
         if(messagedata.get(position).getType()==2){
-            convertView = LayoutInflater.from(context).inflate(R.layout.catalog, parent, false);
-            TextView view=convertView.findViewById(R.id.left_message2);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout, parent, false);
+            TextView view=convertView.findViewById(R.id.daohang);
+            Button button1=convertView.findViewById(R.id.button1);
+            Button button2=convertView.findViewById(R.id.button2);
+            Button button3=convertView.findViewById(R.id.button3);
+            Button button4=convertView.findViewById(R.id.button4);
+            Button button5=convertView.findViewById(R.id.button5);
             view.setText(messagedata.get(position).getMessage());
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了",button1.getText().toString());
+                }
+            });
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了",button2.getText().toString());
+                }
+            });
+            button3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了",button3.getText().toString());
+                }
+            });
+            button4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了",button4.getText().toString());
+                }
+            });
+            button5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了",button5.getText().toString());
+                }
+            });
 
         }
         else if(messagedata.get(position).getType()==1){
