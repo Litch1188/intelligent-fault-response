@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/ask_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="left"
+        android:text="如果您清楚车辆问题的大概所在，例如“空调故障，”请选择自助定位车辆问题；如果您不太清楚车辆故障部位，请选择智能助手服务定位车辆问题"
+        android:textColor="#ff0F1520"
+        android:lineSpacingMultiplier="1.5"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:textSize="18dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ask_service"
+        android:paddingLeft="10dp"
+        >
+        <Button
+            android:id="@+id/self_service"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="自助定位"
+            android:background="@color/white"
+            android:textColor="#006BE1"/>
+        <Button
+            android:id="@+id/ai_service"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="90dp"
+            android:text="智能助手定位"
+            android:background="@color/white"
+            android:textColor="#006BE1"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

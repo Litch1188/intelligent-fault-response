@@ -3,6 +3,7 @@ package com.example.intelligentfaultdiagnosis;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Message message2=new Message();
         Message message3=new Message();
         Message message4=new Message();
-        message1.setMessage("Hello!",1);
+        message1.setMessage("Hello!",0);
         message2.setMessage("这是一条message1",0);
         message3.setMessage("这是一条message2",1);
         message4.setMessage("这是一条message3",0);

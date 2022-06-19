@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="datas">
+        <item>无法启动充电</item>
+        <item>无法启动充电</item>
+        <item>无法启动充电</item>
+        <item>无法启动充电</item>
+        <item>无法启动充电</item>
+    </string-array>
+</resources>
