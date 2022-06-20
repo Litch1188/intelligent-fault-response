@@ -64,5 +64,6 @@ public class MainActivity extends AppCompatActivity {
         listview.setAdapter(MyAdapt);
         editText=(EditText)findViewById(R.id.SendText);
         editText.setText("");
+        listview.setSelection(listview.getBottom());
     }
 }

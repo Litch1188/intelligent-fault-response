@@ -67,6 +67,7 @@ public class MyMessageAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Log.e("点击了",button1.getText().toString());
+
                 }
             });
             button2.setOnClickListener(new View.OnClickListener() {
