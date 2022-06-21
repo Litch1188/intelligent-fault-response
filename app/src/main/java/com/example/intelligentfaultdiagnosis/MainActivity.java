@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         Message message2=new Message();
         message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",3);
         messagedata.add(message2);
+        Message message3=new Message();
+        message3.setMessage("sjd",4);
+        messagedata.add(message3);
         MyAdapt=new MyMessageAdapter(messagedata,this);//初始化渲染列表
         listview.setAdapter(MyAdapt);
     }
