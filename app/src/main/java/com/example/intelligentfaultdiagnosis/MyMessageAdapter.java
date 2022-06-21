@@ -117,6 +117,7 @@ public class MyMessageAdapter extends BaseAdapter {
             });
         }
         else{
+            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
             TextView view=convertView.findViewById(R.id.right_message);
             view.setText(messagedata.get(position).getMessage());
             LinearLayout layout=convertView.findViewById(R.id.left_layout);
@@ -124,5 +125,7 @@ public class MyMessageAdapter extends BaseAdapter {
         }
         return convertView;
     }
+
+
 
 }

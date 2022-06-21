@@ -1,21 +1,34 @@
 package com.example.intelligentfaultdiagnosis;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import static java.security.AccessController.getContext;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private List<Message> messagedata=new ArrayList<>();
+    public static List<Solution_Data> solutiondata=new ArrayList<>();
     private Button button1;
     private EditText editText;
     private MyMessageAdapter MyAdapt;
@@ -65,5 +78,68 @@ public class MainActivity extends AppCompatActivity {
         editText=(EditText)findViewById(R.id.SendText);
         editText.setText("");
         listview.setSelection(listview.getBottom());
+        getSolution(SendMsg);
+
+
     }
+
+
+    public void getSolution(String sentence){
+        AndroidNetworking.get("http://10.0.2.2:5000/model/autoLocateFault?sentence="+sentence.toString())
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data=response.getJSONObject("fault");
+                            Message fault_info=new Message();
+                             String fault_name =data.getString("fault_name");
+                             fault_info.setMessage("您遇到的故障可能为"+fault_name,3);
+                             messagedata.add(fault_info);
+                             Log.d("fault_name",fault_name.toString());
+                             update_list();
+
+                             JSONObject solution=response.getJSONObject("solution");
+                             JSONArray step=solution.getJSONArray("step_list");
+                             Integer size=step.length();
+                             for(int i=0;i<size;i++)
+                             {
+                                 JSONObject solution_I= step.getJSONObject(i);
+                                 String step_content=solution_I.getString("content");
+                                 String link=solution_I.getString("picture_path");
+                                 Log.d("link",link);
+                                 Solution_Data step1 =new Solution_Data();
+                                 step1.setStep(step_content,link);
+                                 solutiondata.add(step1);
+                             }
+
+                        }
+                        catch (JSONException Ex){
+                            Ex.printStackTrace();
+                            Toast.makeText(MainActivity.this,"Data error!",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(MainActivity.this,"Network error!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        listview.setSelection(listview.getBottom());
+}
+
+
+    public void update_list(){
+        MyAdapt.update(messagedata,this);//更新Listview列表
+        listview.setAdapter(MyAdapt);
+        Log.d("fault_name","1");
+        listview.setSelection(listview.getBottom());
+    }
+
+    public static List<Solution_Data> givedata()
+    {
+        return solutiondata;
+    }
+
 }

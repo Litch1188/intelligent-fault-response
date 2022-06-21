@@ -21,12 +21,15 @@ import java.util.Map;
 public class BrowseSolutionActivity extends AppCompatActivity {
     private ListView listView;
     private Activity SolutionActivity;
+    private SolutionAdapter SolAdapt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_solution);
         listView=findViewById(R.id.solution_content_list);
         SolutionActivity=this;
+        SolAdapt=new SolutionAdapter(MainActivity.givedata(),this);
+        listView.setAdapter(SolAdapt);
         ImageButton backButton = (ImageButton)findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +38,9 @@ public class BrowseSolutionActivity extends AppCompatActivity {
                 SolutionActivity.finish();
             }
         });
+
+
+
     }
 
 
