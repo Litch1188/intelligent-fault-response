@@ -116,6 +116,26 @@ public class MyMessageAdapter extends BaseAdapter {
                 }
             });
         }
+        else if(messagedata.get(position).getType()==4)
+        {
+           convertView=LayoutInflater.from(context).inflate(R.layout.score,parent,false);
+           Button button1=convertView.findViewById(R.id.score_button1);
+           Button button2=convertView.findViewById(R.id.score_button2);
+           button1.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  v.setSelected(true);
+                  button2.setSelected(false);
+               }
+           });
+           button2.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   v.setSelected(true);
+                   button1.setSelected(false);
+               }
+           });
+        }
         else{
             convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
             TextView view=convertView.findViewById(R.id.right_message);

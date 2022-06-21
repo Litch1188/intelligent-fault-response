@@ -27,6 +27,7 @@
         <entry key="..\:/shixun/IntelligentFaultDiagnosis/app/src/main/res/layout/rightitem.xml" value="0.264" />
         <entry key="..\:/shixun/IntelligentFaultDiagnosis/app/src/main/res/layout/rightshape.xml" value="0.2390625" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1335" />
+        <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/drawable/corner_dialog.xml" value="0.139" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/drawable/corner_view.xml" value="0.139" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1335" />
@@ -41,6 +42,7 @@
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/layout.xml" value="0.26666666666666666" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/leftitem.xml" value="0.22916666666666666" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/rightitem.xml" value="0.22916666666666666" />
+        <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/score.xml" value="0.20969202898550723" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/solution_item.xml" value="0.26666666666666666" />
         <entry key="..\:/shixun/intelligent-fault-response/app/src/main/res/layout/solution_message.xml" value="0.25364583333333335" />
       </map>
