@@ -56,6 +56,11 @@ public class SolutionAdapter extends BaseAdapter{
             img_view=convertView.findViewById(R.id.sol_imageView);
             Glide.with(img_view).load(messagedata.get(position).getSolutionImgLink()).into(img_view);
         }
+        else
+        {
+            LinearLayout layout2=convertView.findViewById(R.id.sol_imageView);
+            layout2.setVisibility(View.GONE);//隐藏
+        }
         return convertView;
     }
 }

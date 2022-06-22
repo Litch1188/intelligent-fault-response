@@ -15,7 +15,7 @@
         android:id="@+id/sol_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="20dp"
         android:text="10"
         />
@@ -23,7 +23,8 @@
             android:id="@+id/sol_imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity=""
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             />
 
     </LinearLayout>

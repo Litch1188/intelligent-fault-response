@@ -3,6 +3,7 @@ package com.example.intelligentfaultdiagnosis;
 import androidx.appcompat.app.AppCompatActivity;
 import static java.security.AccessController.getContext;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private Button button1;
     private EditText editText;
     private MyMessageAdapter MyAdapt;
-    ListView listview;
+    private ListView listview;
     public static Activity mActivity;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getSolution(String sentence){
-        AndroidNetworking.get("http://10.0.2.2:5000/model/autoLocateFault?sentence="+sentence.toString())
+        AndroidNetworking.get("http://47.112.216.3/model/autoLocateFault?sentence="+sentence.toString())
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -102,10 +104,11 @@ public class MainActivity extends AppCompatActivity {
                              messagedata.add(fault_info);
                              Log.d("fault_name",fault_name.toString());
                              update_list();
-
                              JSONObject solution=response.getJSONObject("solution");
+                             id=solution.getInt("solution_id");
                              JSONArray step=solution.getJSONArray("step_list");
                              Integer size=step.length();
+                             solutiondata.clear();
                              for(int i=0;i<size;i++)
                              {
                                  JSONObject solution_I= step.getJSONObject(i);
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                                  String link=solution_I.getString("picture_path");
                                  Log.d("link",link);
                                  Solution_Data step1 =new Solution_Data();
-                                 step1.setStep(step_content,link);
+                                 step1.setStep(step_content,link,id);
                                  solutiondata.add(step1);
                              }
 
@@ -143,6 +146,20 @@ public class MainActivity extends AppCompatActivity {
     public static List<Solution_Data> givedata()
     {
         return solutiondata;
+    }
+
+    public void update_solution(){
+        //每个解决方案button点击的时候获取对应的解决方案
+        Button button1=(Button)findViewById(R.id.solution_button);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View button1) {
+                Intent intent=new Intent(MainActivity.mActivity,BrowseSolutionActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity.mActivity.startActivity(intent);
+            }
+        });
+
     }
 
 }
