@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -35,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private MyMessageAdapter MyAdapt;
     private ListView listview;
     public static Activity mActivity;
+    public static ArrayList<List<Solution_Data>> Sol_List=new ArrayList<>();
+    //维护一个存储所有solution_data_list的ArrayList
+    public static int Pos=-1;
+    //每一个solution_data_list在ArrayList里面的位置
+    private int pos;
+    private int position;
+    //点击按钮时拿到的位置：按钮所在的Item在对话Listview里面的位置
+    public static int[] pos_to_Pos=new int[100];
+    //用position去找Pos的数组，大家都是从0开始的
     private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            List<Solution_Data> sol_data=new ArrayList<>();
                             JSONObject data=response.getJSONObject("fault");
                             Message fault_info=new Message();
                              String fault_name =data.getString("fault_name");
@@ -108,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                              id=solution.getInt("solution_id");
                              JSONArray step=solution.getJSONArray("step_list");
                              Integer size=step.length();
-                             solutiondata.clear();
+                             sol_data.clear();
                              for(int i=0;i<size;i++)
                              {
                                  JSONObject solution_I= step.getJSONObject(i);
@@ -117,8 +128,18 @@ public class MainActivity extends AppCompatActivity {
                                  Log.d("link",link);
                                  Solution_Data step1 =new Solution_Data();
                                  step1.setStep(step_content,link,id);
-                                 solutiondata.add(step1);
+                                 sol_data.add(step1);
                              }
+                                 Sol_List.add(sol_data);
+
+                             for(int i=0;i<Sol_List.size();i++)
+                             {
+                             Log.d("每一个解决方案的第一项",Sol_List.get(i).get(0).getSolutionDataContext());
+                             }
+                             //一条消息对应一个返回
+                            Pos+=1;
+                            pos=messagedata.size()-1;//从0开始
+                            pos_to_Pos[pos]=Pos;
 
                         }
                         catch (JSONException Ex){

@@ -107,11 +107,15 @@ public class MyMessageAdapter extends BaseAdapter {
             TextView view=convertView.findViewById(R.id.left_message3);
             view.setText(messagedata.get(position).getMessage());
             Button button1=convertView.findViewById(R.id.solution_button);
+            button1.setTag(position);
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View button1) {
+                    int pos2=(Integer) button1.getTag();
+                    Log.d("pos",pos2+"");
                     Intent intent=new Intent(MainActivity.mActivity,BrowseSolutionActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("Position",pos2);
                     MainActivity.mActivity.startActivity(intent);
                 }
             });

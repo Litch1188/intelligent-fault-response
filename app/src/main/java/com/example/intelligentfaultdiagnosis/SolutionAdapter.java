@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 public class SolutionAdapter extends BaseAdapter{
     private List<Solution_Data> messagedata;
@@ -28,6 +29,12 @@ public class SolutionAdapter extends BaseAdapter{
         this.messagedata = messagedata;
         this.context = context;
     }
+    public void update(List<Solution_Data> Messagedata,Context context)
+    {
+        this.messagedata = Messagedata;
+        this.context = context;
+    }
+
 
     public int getCount() {
         return messagedata.size();

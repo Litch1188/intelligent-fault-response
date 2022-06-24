@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,7 +30,14 @@ public class BrowseSolutionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_browse_solution);
         listView=findViewById(R.id.solution_content_list);
         SolutionActivity=this;
-        SolAdapt=new SolutionAdapter(MainActivity.givedata(),this);
+        Intent intent=getIntent();
+        int pos=intent.getIntExtra("Position",0);
+        Log.d("拿到的item位置",pos+"");
+        int pos_in_list=MainActivity.pos_to_Pos[pos];
+        Log.d("取出的对应解决方案位置",pos_in_list+"");
+//        SolAdapt.update(MainActivity.Sol_List.get(pos_in_list),this);
+        Log.d("解决方案第一个",MainActivity.Sol_List.get(pos_in_list).get(0).getSolutionDataContext());
+        SolAdapt=new SolutionAdapter(MainActivity.Sol_List.get(pos_in_list),this);
         listView.setAdapter(SolAdapt);
         ImageButton backButton = (ImageButton)findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
