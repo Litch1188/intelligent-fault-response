@@ -5,6 +5,7 @@ import static java.security.AccessController.getContext;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private List<Message> messagedata=new ArrayList<>();
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static int[] pos_to_Pos=new int[100];
     //用position去找Pos的数组，大家都是从0开始的
     private int id;
+    public static Message scoreMsg=new Message();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
         Message message2=new Message();
         message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",3);
         messagedata.add(message2);
-        Message message3=new Message();
-        message3.setMessage("sjd",4);
-        messagedata.add(message3);
+//        Message message3=new Message();
+//        message3.setMessage("sjd",4);
+//        messagedata.add(message3);
         MyAdapt=new MyMessageAdapter(messagedata,this);//初始化渲染列表
         listview.setAdapter(MyAdapt);
     }
@@ -85,20 +88,31 @@ public class MainActivity extends AppCompatActivity {
     {
         editText=(EditText)findViewById(R.id.SendText);
         String SendMsg=editText.getText().toString();
-        Message userMsg=new Message();
-        userMsg.setMessage(SendMsg,0);
-        messagedata.add(userMsg);
-        MyAdapt.update(messagedata,this);//更新Listview列表
-        listview.setAdapter(MyAdapt);
-        editText=(EditText)findViewById(R.id.SendText);
-        editText.setText("");
-        listview.setSelection(listview.getBottom());
-        getSolution(SendMsg);
-
-
+        if(TextUtils.isEmpty(SendMsg))
+        {
+            return;
+        }
+        else {
+            Message userMsg = new Message();
+            userMsg.setMessage(SendMsg, 0);
+            messagedata.add(userMsg);
+            MyAdapt.update(messagedata, this);//更新Listview列表
+            listview.setAdapter(MyAdapt);
+            editText = (EditText) findViewById(R.id.SendText);
+            editText.setText("");
+            listview.setSelection(listview.getBottom());
+            getSolution(SendMsg);
+            scoreMsg.setMessage("abc",4);
+            send_score();
+        }
     }
 
-
+    public void send_score()
+    {
+        messagedata.add(scoreMsg);
+        MyAdapt.update(messagedata, this);//更新Listview列表
+        listview.setAdapter(MyAdapt);
+    }
     public void getSolution(String sentence){
         AndroidNetworking.get("http://47.112.216.3/model/autoLocateFault?sentence="+sentence.toString())
                 .setPriority(Priority.HIGH)
