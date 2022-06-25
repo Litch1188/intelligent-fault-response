@@ -20,14 +20,14 @@ import java.util.List;
 
 public class MyMessageAdapter extends BaseAdapter {
     private List<Message> messagedata;
-    private Context context;
+    private MainActivity context;
 
-    public MyMessageAdapter(List<Message> messagedata, Context context) {
+    public MyMessageAdapter(List<Message> messagedata, MainActivity context) {
         this.messagedata = messagedata;
         this.context = context;
     }
 
-    public void update(List<Message> messagedata, Context context)
+    public void update(List<Message> messagedata, MainActivity context)
     {
         this.messagedata = messagedata;
         this.context = context;
@@ -62,12 +62,21 @@ public class MyMessageAdapter extends BaseAdapter {
             Button button3=convertView.findViewById(R.id.button3);
             Button button4=convertView.findViewById(R.id.button4);
             Button button5=convertView.findViewById(R.id.button5);
+            Button button6=convertView.findViewById(R.id.button6);
+            Button button7=convertView.findViewById(R.id.button7);
+            Button[] btn_list=new Button[]{button1,button2,button3,button4,button5,button6,button7};
+            for (Integer i=0;i<btn_list.length;i++)
+            {
+                btn_list[i].setText(context.faullt_list.get(i+1));
+            }
             view.setText(messagedata.get(position).getMessage());
+            for(int i=0;i<context.faullt_list.size();i++) {
+            }
+
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.e("点击了",button1.getText().toString());
-
                 }
             });
             button2.setOnClickListener(new View.OnClickListener() {
