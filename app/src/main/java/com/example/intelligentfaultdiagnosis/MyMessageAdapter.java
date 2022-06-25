@@ -129,14 +129,18 @@ public class MyMessageAdapter extends BaseAdapter {
                @Override
                public void onClick(View v) {
                   v.setSelected(true);
+                  v.setClickable(false);
                   button2.setSelected(false);
+                  button2.setClickable(false);
                }
            });
            button2.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    v.setSelected(true);
+                   v.setClickable(false);
                    button1.setSelected(false);
+                   button1.setClickable(false);
                }
            });
         }

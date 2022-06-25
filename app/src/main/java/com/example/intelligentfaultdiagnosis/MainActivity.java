@@ -102,17 +102,18 @@ public class MainActivity extends AppCompatActivity {
             editText.setText("");
             listview.setSelection(listview.getBottom());
             getSolution(SendMsg);
-            scoreMsg.setMessage("abc",4);
-            send_score();
+//            scoreMsg.setMessage("abc",4);
+//            send_score();
         }
     }
 
-    public void send_score()
-    {
-        messagedata.add(scoreMsg);
-        MyAdapt.update(messagedata, this);//更新Listview列表
-        listview.setAdapter(MyAdapt);
-    }
+//    public void send_score()
+//    {
+//
+//        messagedata.add(scoreMsg);
+//        MyAdapt.update(messagedata, this);//更新Listview列表
+//        listview.setAdapter(MyAdapt);
+//    }
     public void getSolution(String sentence){
         AndroidNetworking.get("http://47.112.216.3/model/autoLocateFault?sentence="+sentence.toString())
                 .setPriority(Priority.HIGH)
@@ -127,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
                              String fault_name =data.getString("fault_name");
                              fault_info.setMessage("您遇到的故障可能为"+fault_name,3);
                              messagedata.add(fault_info);
+                             Message score_msg=new Message();
+                             score_msg.setMessage("abc",4);
+                             messagedata.add(score_msg);
                              Log.d("fault_name",fault_name.toString());
                              update_list();
                              JSONObject solution=response.getJSONObject("solution");
@@ -152,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                              }
                              //一条消息对应一个返回
                             Pos+=1;
-                            pos=messagedata.size()-1;//从0开始
+                            pos=messagedata.size()-2;//从0开始
                             pos_to_Pos[pos]=Pos;
 
                         }
