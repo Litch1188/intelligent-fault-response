@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         message1.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",2);
         messagedata.add(message1);
         Message message2=new Message();
-        message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",3);
+        message2.setMessage("请输入您遇到的行车故障",1);
         messagedata.add(message2);
-        Message message3=new Message();
-        message3.setMessage("sjd",4);
-        messagedata.add(message3);
+//        Message message3=new Message();
+//        message3.setMessage("sjd",4);
+//        messagedata.add(message3);
         MyAdapt=new MyMessageAdapter(messagedata,this);//初始化渲染列表
         listview.setAdapter(MyAdapt);
     }

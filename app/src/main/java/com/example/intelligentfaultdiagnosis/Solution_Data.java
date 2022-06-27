@@ -12,7 +12,7 @@ public class Solution_Data {
 
       public void setStep(String step,String link,int ID){
             this.step_content=step;
-            this.img_link="http://10.0.2.2:5000"+link;
+            this.img_link="http://47.112.216.3/"+link;
             this.id=ID;
       }
 }
