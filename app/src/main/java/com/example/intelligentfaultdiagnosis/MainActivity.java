@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         });
         get_faultlist();
         Message message2=new Message();
+<<<<<<< HEAD
+=======
+        message2.setMessage("请输入您遇到的行车故障",1);
+>>>>>>> fff51f298b958b486c718402ec573116de54b579
         message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",1);
         messagedata.add(message2);
 //        Message message3=new Message();
