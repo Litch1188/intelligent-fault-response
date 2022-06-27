@@ -72,7 +72,13 @@ public class MyMessageAdapter extends BaseAdapter {
                 String msg=context.faullt_list.get(i+1);
                 btn_list[i].setTag(msg);
             }
-            for(int i=context.faullt_list.size();i<7;i++)
+            String btn3="自动泊车中断";
+            btn_list[3].setText(btn3);
+            btn_list[3].setTag(btn3);
+            String btn4="雨刮片磨损";
+            btn_list[4].setText(btn4);
+            btn_list[4].setTag(btn4);
+            for(int i=5;i<7;i++)
             {
                 btn_list[i].setVisibility(View.GONE);
             }
@@ -132,6 +138,12 @@ public class MyMessageAdapter extends BaseAdapter {
 //                    int pos=(Integer) button4.getTag();
 //                    Log.e("pos",pos+"");
 //                    context.get_secondlist(pos);
+                    Message message=new Message();
+                    String msg=(String) button4.getTag();
+                    message.setMessage(msg,6);
+                    messagedata.add(message);
+                    context.update_list();
+                    context.getSolution(message.getMessage());
                 }
             });
             button5.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +153,12 @@ public class MyMessageAdapter extends BaseAdapter {
 //                    int pos=(Integer) button5.getTag();
 //                    Log.e("pos",pos+"");
 //                    context.get_secondlist(pos);
+                    Message message=new Message();
+                    String msg=(String) button5.getTag();
+                    message.setMessage(msg,6);
+                    messagedata.add(message);
+                    context.update_list();
+                    context.getSolution(message.getMessage());
                 }
             });
             button6.setOnClickListener(new View.OnClickListener() {
