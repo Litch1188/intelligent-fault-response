@@ -58,5 +58,21 @@
         android:background="@drawable/leftshape"
         android:textColor="#006BE1"
         android:gravity="left"/>
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    ESP故障"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="·    ESP故障"
+        android:background="@drawable/leftshape"
+        android:textColor="#006BE1"
+        android:gravity="left"/>
 </LinearLayout>
 </LinearLayout>

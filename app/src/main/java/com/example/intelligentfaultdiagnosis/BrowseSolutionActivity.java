@@ -44,6 +44,7 @@ public class BrowseSolutionActivity extends AppCompatActivity {
             @Override
             public void onClick(View backbutton) {
                 //结束当前Activity
+
                 SolutionActivity.finish();
             }
         });

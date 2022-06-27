@@ -17,17 +17,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 
 public class MyMessageAdapter extends BaseAdapter {
     private List<Message> messagedata;
-    private Context context;
+    private MainActivity context;
 
-    public MyMessageAdapter(List<Message> messagedata, Context context) {
+    public MyMessageAdapter(List<Message> messagedata, MainActivity context) {
         this.messagedata = messagedata;
         this.context = context;
     }
 
-    public void update(List<Message> messagedata, Context context)
+    public void update(List<Message> messagedata, MainActivity context)
     {
         this.messagedata = messagedata;
         this.context = context;
@@ -62,41 +63,106 @@ public class MyMessageAdapter extends BaseAdapter {
             Button button3=convertView.findViewById(R.id.button3);
             Button button4=convertView.findViewById(R.id.button4);
             Button button5=convertView.findViewById(R.id.button5);
+            Button button6=convertView.findViewById(R.id.button6);
+            Button button7=convertView.findViewById(R.id.button7);
+            Button[] btn_list=new Button[]{button1,button2,button3,button4,button5,button6,button7};
+            for (Integer i=0;i<context.faullt_list.size();i++)
+            {
+                btn_list[i].setText(context.faullt_list.get(i+1));
+                String msg=context.faullt_list.get(i+1);
+                btn_list[i].setTag(msg);
+            }
+            for(int i=context.faullt_list.size();i<7;i++)
+            {
+                btn_list[i].setVisibility(View.GONE);
+            }
             view.setText(messagedata.get(position).getMessage());
+//            for(int i=0;i<context.faullt_list.size();i++) {
+//            }
+
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了",button1.getText().toString());
-
+//                    Log.e("点击了",button1.getText().toString());
+//                    int pos=(Integer) button1.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
+                    Message message=new Message();
+                    String msg=(String) button1.getTag();
+                    message.setMessage(msg,6);
+                    messagedata.add(message);
+                    context.update_list();
+                    context.getSolution(message.getMessage());
                 }
             });
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了",button2.getText().toString());
+//                    Log.e("点击了",button2.getText().toString());
+//                    int pos=(Integer) button2.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
+                    Message message=new Message();
+                    String msg=(String) button2.getTag();
+                    message.setMessage(msg,6);
+                    messagedata.add(message);
+                    context.update_list();
+                    context.getSolution(message.getMessage());
                 }
             });
             button3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了",button3.getText().toString());
+//                    Log.e("点击了",button3.getText().toString());
+//                    int pos=(Integer) button3.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
+                    Message message=new Message();
+                    String msg=(String) button3.getTag();
+                    message.setMessage(msg,6);
+                    messagedata.add(message);
+                    context.update_list();
+                    context.getSolution(message.getMessage());
                 }
             });
             button4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了",button4.getText().toString());
+//                    Log.e("点击了",button4.getText().toString());
+//                    int pos=(Integer) button4.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
                 }
             });
             button5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了",button5.getText().toString());
+//                    Log.e("点击了",button5.getText().toString());
+//                    int pos=(Integer) button5.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
+                }
+            });
+            button6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    int pos=(Integer) button6.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
+                }
+            });
+            button7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    int pos=(Integer) button7.getTag();
+//                    Log.e("pos",pos+"");
+//                    context.get_secondlist(pos);
                 }
             });
 
         }
         else if(messagedata.get(position).getType()==1){
+            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
             TextView view=convertView.findViewById(R.id.left_message);
             view.setText(messagedata.get(position).getMessage());
             LinearLayout layout=convertView.findViewById(R.id.right_layout);
@@ -129,16 +195,40 @@ public class MyMessageAdapter extends BaseAdapter {
                @Override
                public void onClick(View v) {
                   v.setSelected(true);
+                  v.setClickable(false);
                   button2.setSelected(false);
+                  button2.setClickable(false);
                }
            });
            button2.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    v.setSelected(true);
+                   v.setClickable(false);
                    button1.setSelected(false);
+                   button1.setClickable(false);
                }
            });
+        }
+        else if(messagedata.get(position).getType()==5)
+        {
+          convertView=LayoutInflater.from(context).inflate(R.layout.layout,parent,false);
+            TextView view=convertView.findViewById(R.id.daohang);
+            Button button1=convertView.findViewById(R.id.button1);
+            Button button2=convertView.findViewById(R.id.button2);
+            Button button3=convertView.findViewById(R.id.button3);
+            Button button4=convertView.findViewById(R.id.button4);
+            Button button5=convertView.findViewById(R.id.button5);
+            Button button6=convertView.findViewById(R.id.button6);
+            Button button7=convertView.findViewById(R.id.button7);
+            Button[] btn_list=new Button[]{button1,button2,button3,button4,button5,button6,button7};
+            view.setText(messagedata.get(position).getMessage());
+            int size=context.second_map_list.get(messagedata.get(position).getMessage()).size();
+            for(int i=0;i<size;i++)
+            {
+                btn_list[i].setText(context.second_map_list.get(messagedata.get(position).getMessage()).get(i));
+            }
+
         }
         else{
             convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);

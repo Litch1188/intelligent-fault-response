@@ -5,6 +5,7 @@ import static java.security.AccessController.getContext;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,7 +18,10 @@ import android.widget.Toast;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -27,6 +31,7 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private List<Message> messagedata=new ArrayList<>();
@@ -37,15 +42,21 @@ public class MainActivity extends AppCompatActivity {
     private ListView listview;
     public static Activity mActivity;
     public static ArrayList<List<Solution_Data>> Sol_List=new ArrayList<>();
+    public  Map<String,Map<Integer,String>> second_map_list=new HashMap<>();
+    public String[] fault_list=new String[10];
+    public Map<Integer,String> total_map=new HashMap<>();
     //维护一个存储所有solution_data_list的ArrayList
     public static int Pos=-1;
     //每一个solution_data_list在ArrayList里面的位置
     private int pos;
     private int position;
     //点击按钮时拿到的位置：按钮所在的Item在对话Listview里面的位置
-    public static int[] pos_to_Pos=new int[100];
+    public Map<Integer,String> faullt_list=new HashMap<>();
+    public Map<Integer,String> second_maplist=new HashMap<>();
     //用position去找Pos的数组，大家都是从0开始的
+    public static int[] pos_to_Pos=new int[100];
     private int id;
+    public static Message scoreMsg=new Message();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        Message message1=new Message();
-        message1.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",2);
-        messagedata.add(message1);
+        get_faultlist();
         Message message2=new Message();
+<<<<<<< HEAD
         message2.setMessage("请输入您遇到的行车故障",1);
+=======
+        message2.setMessage("我是您的小助手鹏鹏，请问您遇到了什么问题？",1);
+>>>>>>> 88122162a9f9f4cc224ad868a45fb580cc70996e
         messagedata.add(message2);
 //        Message message3=new Message();
 //        message3.setMessage("sjd",4);
@@ -85,20 +98,32 @@ public class MainActivity extends AppCompatActivity {
     {
         editText=(EditText)findViewById(R.id.SendText);
         String SendMsg=editText.getText().toString();
-        Message userMsg=new Message();
-        userMsg.setMessage(SendMsg,0);
-        messagedata.add(userMsg);
-        MyAdapt.update(messagedata,this);//更新Listview列表
-        listview.setAdapter(MyAdapt);
-        editText=(EditText)findViewById(R.id.SendText);
-        editText.setText("");
-        listview.setSelection(listview.getBottom());
-        getSolution(SendMsg);
-
-
+        if(TextUtils.isEmpty(SendMsg))
+        {
+            return;
+        }
+        else {
+            Message userMsg = new Message();
+            userMsg.setMessage(SendMsg, 0);
+            messagedata.add(userMsg);
+            MyAdapt.update(messagedata, this);//更新Listview列表
+            listview.setAdapter(MyAdapt);
+            editText = (EditText) findViewById(R.id.SendText);
+            editText.setText("");
+            listview.setSelection(listview.getBottom());
+            getSolution(SendMsg);
+//            scoreMsg.setMessage("abc",4);
+//            send_score();
+        }
     }
 
-
+//    public void send_score()
+//    {
+//
+//        messagedata.add(scoreMsg);
+//        MyAdapt.update(messagedata, this);//更新Listview列表
+//        listview.setAdapter(MyAdapt);
+//    }
     public void getSolution(String sentence){
         AndroidNetworking.get("http://47.112.216.3/model/autoLocateFault?sentence="+sentence.toString())
                 .setPriority(Priority.HIGH)
@@ -113,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
                              String fault_name =data.getString("fault_name");
                              fault_info.setMessage("您遇到的故障可能为"+fault_name,3);
                              messagedata.add(fault_info);
+                             Message score_msg=new Message();
+                             score_msg.setMessage("abc",4);
+                             messagedata.add(score_msg);
                              Log.d("fault_name",fault_name.toString());
                              update_list();
                              JSONObject solution=response.getJSONObject("solution");
@@ -138,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                              }
                              //一条消息对应一个返回
                             Pos+=1;
-                            pos=messagedata.size()-1;//从0开始
+                            pos=messagedata.size()-2;//从0开始
                             pos_to_Pos[pos]=Pos;
 
                         }
@@ -155,8 +183,99 @@ public class MainActivity extends AppCompatActivity {
                 });
         listview.setSelection(listview.getBottom());
 }
+public void get_faultlist()
+{
+    AndroidNetworking.get("http://47.112.216.3//fault/getCommonFault")
+            .setPriority(Priority.HIGH)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
 
+                    try {
+                        JSONArray fault_list=response.getJSONArray("data");
+                        Integer size=fault_list.length();
+                        for(int i=0;i<size;i++)
+                        {
+                            JSONObject fault= fault_list.getJSONObject(i);
+                            int id=fault.getInt("common_fault_id");
+                            String fault_name=fault.getString("fault_name");
+//                            Log.d("link",link);
+//                            Solution_Data step1 =new Solution_Data();
+//                            step1.setStep(step_content,link,id);
+//                            sol_data.add(step1);
+                            faullt_list.put(id,fault_name);
+                        }
+                        for(Map.Entry<Integer,String> entry:faullt_list.entrySet())
+                        {
+                            Log.e("map",entry.getKey()+"  "+entry.getValue());
+                        }
+                        Message message1=new Message();
+                        message1.setMessage("我是您的小助手鹏鹏，请问您遇到了以下问题吗？您也可以输入遇到的问题，我会为您解答。",2);
+                        messagedata.add(message1);
+                        update_list();
+                    }
+                    catch (JSONException Ex){
+                        Ex.printStackTrace();
+                        Toast.makeText(MainActivity.this,"Data error!",Toast.LENGTH_SHORT).show();
+                    }
 
+                }
+
+                @Override
+                public void onError(ANError anError) {
+                    Toast.makeText(MainActivity.this,"Network error!", Toast.LENGTH_SHORT).show();
+                }
+            });
+    listview.setSelection(listview.getBottom());
+}
+
+//public void get_secondlist(int fault_id)
+//{
+//    AndroidNetworking.get("http://47.112.216.3/fault/getStructureFaultById?faultId="+fault_id)
+//            .setPriority(Priority.HIGH)
+//            .build()
+//            .getAsJSONObject(new JSONObjectRequestListener() {
+//                @Override
+//                public void onResponse(JSONObject response) {
+//                    try {
+//                        JSONArray second_list=response.getJSONArray("struct_fault_list");
+//                        Integer size=second_list.length();
+//                        Map<Integer,String> secondList=new HashMap<>();
+//                        for(int i=0;i<size;i++)
+//                        {
+//                            JSONObject fault= second_list.getJSONObject(i);
+//                            int id=fault.getInt("fault_id");
+//                            String fault_name=fault.getString("fault_name");
+////                            Log.d("link",link);
+////                            Solution_Data step1 =new Solution_Data();
+////                            step1.setStep(step_content,link,id);
+////                            sol_data.add(step1);
+//                            secondList.put(id,fault_name);
+////                            total_map.put(id,fault_name);
+//                        }
+//                        second_map_list.put(fault_id+"",secondList);
+//                        for(Map.Entry<Integer,String> entry:secondList.entrySet())
+//                        {
+//                            Log.e("map",entry.getKey()+"  "+entry.getValue());
+//                        }
+//                        Message message_second=new Message();
+//                        message_second.setMessage(fault_id+"",5);
+//                        messagedata.add(message_second);
+//                        update_list();
+//                    }
+//                    catch (JSONException Ex){
+//                        Ex.printStackTrace();
+//                        Toast.makeText(MainActivity.this,"Data error!",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onError(ANError anError) {
+//                    Toast.makeText(MainActivity.this,"Network error!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//}
     public void update_list(){
         MyAdapt.update(messagedata,this);//更新Listview列表
         listview.setAdapter(MyAdapt);
