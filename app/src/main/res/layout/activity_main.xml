@@ -12,6 +12,7 @@
       android:gravity="center"
       android:background="@color/white"
       android:text="智能故障应对"
+      android:textColor="@color/black"
       android:textSize="20sp"
       />
   <ListView
@@ -28,17 +29,16 @@
       android:layout_height="79dp"
       android:background="#FAFBFC"
       android:orientation="horizontal">
-  <ImageButton
-      android:id="@+id/Voice_Image"
-      android:layout_width="35dp"
-      android:layout_height="35dp"
-      android:src="@mipmap/voice"
-      android:layout_marginTop="22dp"
-      android:layout_marginLeft="15dp"
-      android:background="#FAFBFC"/>
+<!--  <ImageButton-->
+<!--      android:id="@+id/Voice_Image"-->
+<!--      android:layout_width="35dp"-->
+<!--      android:layout_height="35dp"-->
+<!--      android:layout_marginTop="22dp"-->
+<!--      android:layout_marginLeft="15dp"-->
+<!--      android:background="#FAFBFC"/>-->
     <EditText
         android:id="@+id/SendText"
-        android:layout_width="335dp"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="15dp"

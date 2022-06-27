@@ -13,6 +13,7 @@
         android:layout_height="45dp"
         android:background="@color/white"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="解决方案名称"
         android:textSize="20sp" />
     <ImageButton
@@ -23,21 +24,23 @@
         android:layout_marginLeft="20dp"
         android:src="@mipmap/back"
         android:background="@color/white"/>
-    <ImageButton
-        android:id="@+id/share_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_alignRight="@+id/solution_activity_name"
-        android:src="@mipmap/share"
-        android:background="@color/white"
-        android:layout_marginRight="20dp" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/share_button"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_alignRight="@+id/solution_activity_name"-->
+<!--        android:src="@mipmap/share"-->
+<!--        android:background="@color/white"-->
+<!--        android:layout_marginRight="20dp" />-->
     <ListView
         android:id="@+id/solution_content_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/solution_activity_name"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:transcriptMode="alwaysScroll"/>
 </RelativeLayout>
 

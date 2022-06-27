@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/drawable/rightshape.xml" value="0.1421875" />
+        <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/drawable/yindaoshape.xml" value="0.1859375" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/activity_browse_solution.xml" value="0.1" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/catalog.xml" value="0.23125" />
@@ -12,7 +13,7 @@
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/fragment_solution.xml" value="0.25364583333333335" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/fragment_solution_list.xml" value="0.25364583333333335" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/item.xml" value="0.1" />
-        <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/layout.xml" value="0.1852355072463768" />
+        <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/layout.xml" value="0.264" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/leftitem.xml" value="0.25" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/solution.xml" value="0.25364583333333335" />
         <entry key="..\:/IntelligenceFaultHandleSystem/app/src/main/res/layout/solution_item.xml" value="0.1" />

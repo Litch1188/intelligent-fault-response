@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="left"
-            android:textColor="#ff0F1520"
+            android:textColor="@color/black"
             android:textSize="20dp"/>
         <ListView
             android:layout_below="@id/left_message2"
